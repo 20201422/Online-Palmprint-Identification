@@ -6,9 +6,9 @@ Python 3.11
 ## 目录说明：
 PolyU_Palm-point_600：存放原始掌纹采集图像
 
-PalmROI：存放ROI图像
+PalmROI：存放ROI图像 默认没有，需要运行
 
-Gabor：存放每个掌纹图像的实部图像和虚部图像
+Gabor：存放每个掌纹图像的实部图像和虚部图像 默认没有，需要运行
 
 Chart：存放运行的结果图表
 
