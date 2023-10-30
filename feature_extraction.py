@@ -61,7 +61,7 @@ def binarization(img):
 # 下采样 128*128 -> 32*32
 def downsampling(img):
     img_downscaled = skimage.measure.block_reduce(img, (4, 4), np.mean)
-    # 设定阈值,这里取128
+    # 设定阈值
     threshold = 128
     # 二值化
     img_binary = np.where(img_downscaled >= threshold, 255, 0)

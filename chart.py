@@ -6,7 +6,6 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy import stats
 
 plt.rcParams['font.family'] = ['Arial Unicode MS']  # 设置中文支持
 
@@ -64,6 +63,7 @@ def get_threshold(x, genuine_y, imposter_y):
         print("Intersection point x coordinate:", intersect_x)
     else:
         print("No intersection point")
+
 
 # 绘制ROC曲线图
 def get_receiver_operating_characteristic(genuine, imposter):

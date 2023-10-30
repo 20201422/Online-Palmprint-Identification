@@ -16,6 +16,7 @@ def get_image(img_name, img_type):
         print('Failed to read the image!')
     return img
 
+
 # 得到掩膜
 def get_mask_image(img_name):
     # 获取图像
