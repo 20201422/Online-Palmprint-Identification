@@ -6,16 +6,15 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy import stats
 
 plt.rcParams['font.family'] = ['Arial Unicode MS']  # 设置中文支持
 
 
 # 绘制汉明距离图
-def get_hamming_distance_chart(genuine, imposter):
+def get_hamming_distance_chart(genuine_list, imposter_list):
     # 计算真假匹配分布中的样本数n_genuine和n_imposter
-    n_genuine = len(genuine)
-    n_imposter = len(imposter)
+    n_genuine = len(genuine_list)
+    n_imposter = len(imposter_list)
 
     # 将横坐标分为500份
     x = np.linspace(0, 0.5, 500)
@@ -23,10 +22,10 @@ def get_hamming_distance_chart(genuine, imposter):
     # 统计个数
     genuine_y = np.zeros(500)
     imposter_y = np.zeros(500)
-    for i in genuine:
+    for i in genuine_list:
         i = int(i * 1000)
         genuine_y[i] = genuine_y[i] + 1
-    for i in imposter:
+    for i in imposter_list:
         i = int(i * 1000)
         imposter_y[i] = imposter_y[i] + 1
 
@@ -65,11 +64,12 @@ def get_threshold(x, genuine_y, imposter_y):
     else:
         print("No intersection point")
 
+
 # 绘制ROC曲线图
-def get_receiver_operating_characteristic(genuine, imposter):
+def get_receiver_operating_characteristic(genuine_list, imposter_list):
     # 计算真假匹配分布中的样本数n_genuine和n_imposter
-    n_genuine = len(genuine)
-    n_imposter = len(imposter)
+    n_genuine = len(genuine_list)
+    n_imposter = len(imposter_list)
 
     # 计算假匹配率FAR和真匹配率GAR
     false_acceptance_rate = [0]
@@ -78,9 +78,9 @@ def get_receiver_operating_characteristic(genuine, imposter):
     min_diff = 1000
 
     for t in np.arange(0.3, 0.5, 0.001):
-        far = (sum(imposter <= t) / n_imposter)
-        frr = (sum(genuine >= t) / n_genuine)
-        gar = (sum(genuine <= t) / n_genuine)
+        far = (sum(imposter_list <= t) / n_imposter)
+        frr = (sum(genuine_list >= t) / n_genuine)
+        gar = (sum(genuine_list <= t) / n_genuine)
 
         false_acceptance_rate.append(far * 100)
         genuine_acceptance_rate.append(gar * 100)
@@ -103,9 +103,9 @@ def get_receiver_operating_characteristic(genuine, imposter):
 
 
 # 图表
-def chart(genuine, imposter):
-    get_hamming_distance_chart(genuine, imposter)
-    get_receiver_operating_characteristic(genuine, imposter)
+def chart(genuine_list, imposter_list):
+    get_hamming_distance_chart(genuine_list, imposter_list)
+    get_receiver_operating_characteristic(genuine_list, imposter_list)
 
 
 if __name__ == '__main__':
